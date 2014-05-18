@@ -2,7 +2,7 @@ package CPAN::Cover::Results;
 
 # ABSTRACT:
 
-use CPAN::Cover::Results::Iterator;
+use CPAN::Cover::Results::ReleaseIterator;
 
 use Moo;
 with 'MooX::Role::CachedURL'
@@ -14,11 +14,11 @@ has '+url' =>
         default => sub { 'http://cpancover.com/staging/cpancover.json' },
     );
 
-sub iterator
+sub release_iterator
 {
     my $self = shift;
 
-    return CPAN::Cover::Results::Iterator->new( results => $self );
+    return CPAN::Cover::Results::ReleaseIterator->new( results => $self );
 }
 
 1;

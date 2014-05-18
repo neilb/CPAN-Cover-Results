@@ -1,8 +1,8 @@
-package CPAN::Cover::Results::Distribution;
+package CPAN::Cover::Results::Release;
 
 use Moo;
 
-has 'name'       => ( is => 'ro' );
+has 'distname'   => ( is => 'ro' );
 has 'version'    => ( is => 'ro' );
 has 'branch'     => ( is => 'ro' );
 has 'condition'  => ( is => 'ro' );
