@@ -4,6 +4,7 @@ package CPAN::Cover::Results;
 
 use CPAN::Cover::Results::ReleaseIterator;
 
+use 5.006;
 use Moo;
 with 'MooX::Role::CachedURL'
     # => { -version => 0.03 }
@@ -33,12 +34,72 @@ CPAN::Cover::Results - get CPAN coverage test results from CPAN Cover service
 
  my $iterator = CPAN::Cover::Results->new()->iterator();
 
- while (my $dist = $iterator->next) {
-     printf "%s (%s) : %.2f\n", $dist->name, $dist->version, $dist->total;
+ while (my $release = $iterator->next) {
+     printf "%s (%s) : %.2f\n",
+            $release->distname, $dist->version,
+            $dist->total;
  }
 
 =head1 DESCRIPTION
 
-This module will get the coverage test results from the CPAN Cover service
-and let you iterate over them, distribution by distribution.
+This module will get the coverage test results from the
+L<CPAN Cover|http://cpancover.com>
+service and let you iterate over them, distribution by distribution.
+CPAN Cover is a service that runs L<Devel::Cover>
+on as much of CPAN as possible,
+and makes the results available.
 
+The release iterator returns instances of L<CPAN::Cover::Results::Release>,
+which has the following attributes:
+
+=over 4
+
+=item * distname - the name of the distribution, as determined
+by L<CPAN::DistnameInfo>.
+
+=item * version - the version number of the release.
+
+=item * branch - the branch coverage of the release's testsuite,
+or C<undef>.
+
+=item * condition - the condition coverage figure, or C<undef>.
+
+=item * pod - the pod coverage, if available, or C<undef>.
+
+=item * statement - the statement coverage, or C<undef>.
+
+=item * subroutine - the subroutine coverage, or C<undef>.
+
+=item * total - the total coverage.
+
+=back
+
+See the L<Devel::Cover> documentation for more information on the
+different coverage figures.
+
+=head1 SEE ALSO
+
+L<Devel::Cover> - the module used to generate test coverage statistics.
+
+L<CPAN Cover|http://cpancover.com> - the coverage testing service that
+generates the results accessed via this module.
+
+L<CPAN::Cover::Results::Release> - the release iterator returns instances
+of this class.
+
+=head1 REPOSITORY
+
+L<https://github.com/neilbowers/CPAN-Cover-Results>
+
+=head1 AUTHOR
+
+Neil Bowers E<lt>neilb@cpan.orgE<gt>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2014 by Neil Bowers <neilb@cpan.org>.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=cut
