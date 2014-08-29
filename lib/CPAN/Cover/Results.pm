@@ -1,7 +1,5 @@
 package CPAN::Cover::Results;
 
-# ABSTRACT:
-
 use CPAN::Cover::Results::ReleaseIterator;
 
 use 5.006;
