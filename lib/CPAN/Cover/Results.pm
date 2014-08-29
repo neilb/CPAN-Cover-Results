@@ -79,8 +79,11 @@ different coverage figures.
 
 L<Devel::Cover> - the module used to generate test coverage statistics.
 
-L<CPAN Cover|http://cpancover.com> - the coverage testing service that
+L<cpancover.com|http://cpancover.com> - the coverage testing service that
 generates the results accessed via this module.
+
+L<Practical code coverage|http://pjcj.net/presentations/spw-2013-practical-code-coverage/slides/> - slides from a talk by Paul Johnson, the author
+of Devel::Cover and cpancover.
 
 L<CPAN::Cover::Results::Release> - the release iterator returns instances
 of this class.
